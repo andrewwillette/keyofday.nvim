@@ -20,15 +20,15 @@ local keys = {
   "G#",
 }
 
-local keyIndex = {
+local keyindex = {
   key = keys[0],
   date = os.time({ year = 2024, month = 10, day = 8 }),
 }
 
-local function days_difference(epoch1, epoch2)
-  local diff_in_seconds = os.difftime(epoch2, epoch1)
-  local diff_in_days = math.floor(diff_in_seconds / (60 * 60 * 24))
-  return diff_in_days + 1
+local function daysdifference(epoch1, epoch2)
+  local secondsdiff = os.difftime(epoch2, epoch1)
+  local daysdiff = math.floor(secondsdiff / (60 * 60 * 24))
+  return daysdiff + 1
 end
 
 local function getdifferencewithmod(difference)
@@ -46,8 +46,8 @@ M.keyofday = function(day)
   dayforkey.hour = 0
   dayforkey.min = 0
   dayforkey.sec = 0
-  local start_of_day = os.time(dayforkey)
-  local daysdifference = days_difference(keyIndex.date, start_of_day)
+  local startofday = os.time(dayforkey)
+  local daysdifference = daysdifference(keyindex.date, startofday)
   local key = getdifferencewithmod(daysdifference)
   return keys[key + 1]
 end
